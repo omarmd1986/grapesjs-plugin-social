@@ -3,7 +3,7 @@ export default (editor, config = {}) => {
 
     var isActive = opt => config.blocks.indexOf(opt) >= 0;
 
-    isActive('facebook') && bm.add(`${config.prefix}-facebook`, {
+    !isActive('facebook') && bm.add(`${config.prefix}-facebook`, {
         label: `Facebook`,
         category: config.socialCategory,
         content: `<div data-type="flike" class="fb-like" data-href="" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="true" style="min-height:50px; width:100px;"></div>`,

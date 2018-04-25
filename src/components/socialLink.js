@@ -1,3 +1,5 @@
+import {socialNet} from '../consts';
+
 export default (editor, config = {}) => {
     const domc = editor.DomComponents;
 
@@ -11,28 +13,10 @@ export default (editor, config = {}) => {
         label: 'Network',
         name: 'network',
         changeProp: 1,
-        options: [
-            {value: 'fa-facebook', name: 'Facebook'},
-            {value: 'fa-twitter', name: 'Twitter'},
-            {value: 'fa-google', name: 'Google'},
-            {value: 'fa-linkedin', name: 'Linkedin'},
-            {value: 'fa-youtube', name: 'Youtube'},
-            {value: 'fa-instagram', name: 'Instagram'},
-            {value: 'fa-pinterest', name: 'Pinterest'},
-            {value: 'fa-snapchat-ghost', name: 'Snapchat'},
-            {value: 'fa-skype', name: 'Skype'},
-            {value: 'fa-android', name: 'Android'},
-            {value: 'fa-dribbble', name: 'Dribbble'},
-            {value: 'fa-vimeo', name: 'Vimeo'},
-            {value: 'fa-tumblr', name: 'Tumblr'},
-            {value: 'fa-vine', name: 'Vine'},
-            {value: 'fa-foursquare', name: 'Foursquare'},
-            {value: 'fa-stumbleupon', name: 'Stumbleupon'},
-            {value: 'fa-flickr', name: 'Flickr'},
-            {value: 'fa-yahoo', name: 'Yahoo'},
-            {value: 'fa-reddit', name: 'Reddit'},
-            {value: 'fa-rss', name: 'RSS'}
-        ]
+        options: socialNet.map(function (c) {
+            const name = c.split('-')[1] || '';
+            return {value: c, name: name};
+        })
     });
     traits.push({
         type: 'select',
@@ -57,8 +41,8 @@ export default (editor, config = {}) => {
             type: 'social-link',
             tagName: 'a',
 
-            network: 'fa-facebook',
-            color: '',
+            network: null,
+            color: null,
 
             // Traits (Settings)
             traits: traits
@@ -70,7 +54,22 @@ export default (editor, config = {}) => {
             if (!result || result === '') {
                 return result;
             }
-            if (el.tagName === 'A' && el.className.includes('fa') && el.getAttribute('data-type') === `${config.social}-link`) {
+            var IsSocialLink = {};
+
+            var isSocial = function () {
+                try {
+                    socialNet.forEach(function (c) {
+                        if (el.className.includes(c)) {
+                            throw IsSocialLink;
+                        }
+                    });
+                } catch (e) {
+                    return true;
+                }
+                return false;
+            };
+
+            if (el.tagName === 'A' && isSocial) {
                 result = {type: 'social-link'};
             }
             return result;
@@ -83,9 +82,6 @@ export default (editor, config = {}) => {
             let model = this.model;
 
             this.listenTo(model, 'change:network change:color', this.updateButton);
-
-            // To update the view
-            this.updateButton();
         },
 
         updateButton: function () {

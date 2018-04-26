@@ -1,11 +1,11 @@
 import grapesjs from 'grapesjs';
 import loadComponents from './components';
 import loadBlocks from './blocks';
-import {style} from './consts';
+import {style, faUrl} from './consts';
 
 export default grapesjs.plugins.add('gjs-social', (editor, opts = {}) => {
     const options = {...{
-                blocks: ['facebook', 'link', 'link-block'],
+                blocks: ['facebook', 'twitter', 'link', 'link-block'],
 
                 prefix: 'social',
 
@@ -22,7 +22,13 @@ export default grapesjs.plugins.add('gjs-social', (editor, opts = {}) => {
 
     // Adding the font awesom
     editor.on('load', () => {
-        editor.addComponents('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">');
+        const components = editor.getComponents();
+        const link = components.find(m => (m.get('attributes').rel === 'stylesheet' &&  m.get('attributes').href === faUrl));
+        
+        // Avoid duplicated the FA css.
+        if(!link){
+            editor.addComponents(`<link rel="stylesheet" href="${faUrl}">`);
+        }
         editor.addComponents(options.style);
     });
 });

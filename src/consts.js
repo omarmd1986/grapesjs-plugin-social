@@ -1,6 +1,8 @@
 export const
+        faUrl = `https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css`,
+    
         flikeUrl = 'https://www.facebook.com/plugins/like.php',
-
+                
         socialNet = [
             'fa-facebook',
             'fa-twitter',

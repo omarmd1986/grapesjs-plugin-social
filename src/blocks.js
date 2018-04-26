@@ -2,9 +2,9 @@ export default (editor, config = {}) => {
     const bm = editor.BlockManager;
 
     var isActive = opt => config.blocks.indexOf(opt) >= 0;
-    
+
     const url = encodeURIComponent(window.location.href);
-    
+
     isActive('facebook') && bm.add(`${config.prefix}-facebook`, {
         label: `Facebook`,
         category: config.socialCategory,
@@ -17,7 +17,45 @@ export default (editor, config = {}) => {
                 }
             </style>
             <div class="flike-container" data-type="${config.prefix}-flike"></div>`,
-        attributes: {class: 'fa fa-plus-square'}
+        attributes: {class: 'fa fa-facebook'}
+    });
+
+    isActive('twitter') && bm.add(`${config.prefix}-twitter`, {
+        label: `Twitter`,
+        category: config.socialCategory,
+        content: {
+            script: function () {
+                window.twttr = (function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0],
+                            t = window.twttr || {};
+                    if (d.getElementById(id))
+                        return t;
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = "https://platform.twitter.com/widgets.js";
+                    fjs.parentNode.insertBefore(js, fjs);
+
+                    t._e = [];
+                    t.ready = function (f) {
+                        t._e.push(f);
+                    };
+
+                    return t;
+                }(document, "script", "twitter-wjs"));
+                
+                this.setAttribute('style', `width: max-content;
+                    position: relative;
+                    margin: 5px;
+                    display: inline-block;`);
+                this.setAttribute('class', `tlike`);
+
+                var self = this;
+                window.twttr.ready(function(){
+                    window.twttr.widgets.createShareButton('/', self, {text: 'Hello World'});
+                });
+            }
+        },
+        attributes: {class: 'fa fa-twitter'}
     });
     /*
      * 

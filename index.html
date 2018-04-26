@@ -33,7 +33,10 @@
 
         plugins: ['gjs-blocks-basic', 'gjs-social'],
         pluginsOpts: {
-          'gjs-social': {}
+          'gjs-social': {},
+          'gjs-blocks-basic': {
+              gridFlex:1
+          }
         }
       });
       window.editor = editor;

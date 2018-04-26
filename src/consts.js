@@ -1,4 +1,6 @@
 export const
+        flikeUrl = 'https://www.facebook.com/plugins/like.php',
+
         socialNet = [
             'fa-facebook',
             'fa-twitter',

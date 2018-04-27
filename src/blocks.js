@@ -22,8 +22,10 @@ export default (editor, config = {}) => {
 
     isActive('twitter') && bm.add(`${config.prefix}-twitter`, {
         label: `Twitter`,
-        category: config.socialCategory,
+        category: config.socialCategory,        
         content: {
+            prefix: config.prefix,
+            
             script: function () {
                 window.twttr = (function (d, s, id) {
                     var js, fjs = d.getElementsByTagName(s)[0],
@@ -42,18 +44,32 @@ export default (editor, config = {}) => {
 
                     return t;
                 }(document, "script", "twitter-wjs"));
-                
+
                 this.setAttribute('style', `width: max-content;
                     position: relative;
                     margin: 5px;
                     display: inline-block;`);
-                this.setAttribute('class', `tlike`);
-
+                
                 var self = this;
-                window.twttr.ready(function(){
-                    window.twttr.widgets.createShareButton('/', self, {text: 'Hello World'});
+                
+                window.twttr.ready(function () {
+                    var tlike = self.querySelector(`div.{[ prefix ]}-tlike`);
+                    window.twttr.widgets.createShareButton('/', self, {
+                        text: (tlike && tlike.getAttribute('data-text')) || '',
+                        hashtags: (tlike && tlike.getAttribute('data-hashtags')) || ''
+                    });
                 });
-            }
+            },
+            components: `
+                <style>
+                div.${config.prefix}-tlike{
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    z-index: -1; // Pass to back. The iframe will catch the clicks.
+                }
+                </style>
+                <div class="${config.prefix}-tlike"></div>`
         },
         attributes: {class: 'fa fa-twitter'}
     });

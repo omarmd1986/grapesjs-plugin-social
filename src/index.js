@@ -13,7 +13,7 @@ export default grapesjs.plugins.add('gjs-social', (editor, opts = {}) => {
                 
                 socialCategory: 'Social'
         }, ...opts};
-
+    
     // Add components
     loadComponents(editor, options);
 

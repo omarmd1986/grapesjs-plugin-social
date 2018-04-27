@@ -26,47 +26,14 @@ export default (editor, config = {}) => {
         content: {
             prefix: config.prefix,
             
-            script: function () {
-                window.twttr = (function (d, s, id) {
-                    var js, fjs = d.getElementsByTagName(s)[0],
-                            t = window.twttr || {};
-                    if (d.getElementById(id))
-                        return t;
-                    js = d.createElement(s);
-                    js.id = id;
-                    js.src = "https://platform.twitter.com/widgets.js";
-                    fjs.parentNode.insertBefore(js, fjs);
-
-                    t._e = [];
-                    t.ready = function (f) {
-                        t._e.push(f);
-                    };
-
-                    return t;
-                }(document, "script", "twitter-wjs"));
-
-                this.setAttribute('style', `width: max-content;
-                    position: relative;
-                    margin: 5px;
-                    display: inline-block;`);
-                
-                var self = this;
-                
-                window.twttr.ready(function () {
-                    var tlike = self.querySelector(`div.{[ prefix ]}-tlike`);
-                    window.twttr.widgets.createShareButton('/', self, {
-                        text: (tlike && tlike.getAttribute('data-text')) || '',
-                        hashtags: (tlike && tlike.getAttribute('data-hashtags')) || ''
-                    });
-                });
-            },
             components: `
                 <style>
                 div.${config.prefix}-tlike{
-                    position: absolute;
-                    width: 100%;
-                    height: 100%;
-                    z-index: -1; // Pass to back. The iframe will catch the clicks.
+                    padding: 5px;
+                    position:relative;
+                    display: inline;
+                    width: fit-content;
+                    height: fit-content;
                 }
                 </style>
                 <div class="${config.prefix}-tlike"></div>`

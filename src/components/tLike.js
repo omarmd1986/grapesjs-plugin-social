@@ -31,7 +31,48 @@ export default (editor, config = {}) => {
             type: 'tlike',
 
             // Traits (Settings)
-            traits: traits
+            traits: traits,
+
+            prefix: config.prefix,
+
+            script: function () {
+                window.twttr = (function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0],
+                            t = window.twttr || {};
+                    if (d.getElementById(id))
+                        return t;
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = "https://platform.twitter.com/widgets.js";
+                    fjs.parentNode.insertBefore(js, fjs);
+
+                    t._e = [];
+                    t.ready = function (f) {
+                        t._e.push(f);
+                    };
+
+                    return t;
+                }(document, "script", "twitter-wjs"));
+
+                var self = this;
+
+                var cover = document.createElement('div');
+                cover.setAttribute('style', 'position: absolute; z-index: -1; width: 100%; height:100%; top: 0; left: 0;');
+                cover.setAttribute('class', 'cover');
+
+                this.parentNode.setAttribute('style', 'display: inline;')
+
+                this.appendChild(cover);
+
+                window.twttr.ready(function () {
+                    window.twttr.widgets.createShareButton('/', self, {
+                        text: (self.getAttribute('data-text')) || '',
+                        hashtags: (self.getAttribute('data-hashtags')) || ''
+                    }).then(function (el) {
+                        document.dispatchEvent(new Event('tlikeload'));
+                    });
+                });
+            }
         })
     }, {
         isComponent: function (el) {
@@ -44,35 +85,44 @@ export default (editor, config = {}) => {
     });
 
     let view = defaultView.extend({
+        events: {
+            click: 'click'
+        },
+
+        click: function (e) {
+            editor.select(this.model);
+        },
 
         init: function () {
             var
-                    el = this.el
-                    , model = this.model
+                    model = this.model
                     , self = this;
-            /*Set the z-index to catch every click*/
-            setTimeout(function () {
-                el.style['z-index'] = '1';
-                self.el = el;
-            }, 100);
+
+            var doc = Util.getDocument();
+            if (doc) {
+                doc.addEventListener('tlikeload', function () {
+                    self.updatePosition();
+                });
+            }
 
             this.listenTo(model, 'change:text change:hashtags', this.updateLike);
             this.listenTo(model, 'change:style change:attr', this.updatePosition);
         },
-        
-        updatePosition: function(){
-            this.el.style['z-index'] = '1';
+
+        updatePosition: function () {
+            var cover = this.el.querySelector('div.cover');
+            cover ? cover.style['z-index'] = 1 : null;
         },
 
         updateLike: function () {
             const text = this.model.get('text'),
                     hashtags = this.model.get('hashtags');
-            
+
             this.model.set('attributes', {
                 'data-text': text,
                 'data-hashtags': hashtags
             });
-            
+
             this.updatePosition();
         }
     });

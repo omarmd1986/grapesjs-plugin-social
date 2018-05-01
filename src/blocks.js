@@ -68,6 +68,33 @@ export default (editor, config = {}) => {
             </div>`,
         attributes: {class: 'fa fa-google-plus'}
     });
+    
+    isActive('linkedin') && bm.add(`${config.prefix}-linkedin`, {
+        label: `Google`,
+        category: config.socialCategory,
+        content: `
+            <style>
+                div.${config.prefix}-linkedin{
+                    width: max-content;
+                    position: relative;
+                    display: inline-block;
+                    margin-left: 5px;
+                    margin-right: 5px;
+                    vertical-align:top;
+                }
+            </style>
+            <div class="${config.prefix}-linkedin">
+                <div class="social-share" title="Share">
+                    <div>
+                        <div class="social-share-icon">
+                            <i class="fa fa-linkedin"></i>
+                        </div>
+                        <span class="social-share-text">Share</span>
+                    </div>
+                </div>
+            </div>`,
+        attributes: {class: 'fa fa-linkedin'}
+    });
     /*
      * 
      */

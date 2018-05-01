@@ -202,6 +202,7 @@ export const
                 text-align: center;
                 vertical-align: middle;
                 white-space: nowrap;
+                line-height: 0 !important;
             }
 
             .social-share-icon {

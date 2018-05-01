@@ -5,7 +5,7 @@ import {style, faUrl} from './consts';
 
 export default grapesjs.plugins.add('gjs-social', (editor, opts = {}) => {
     const options = {...{
-                blocks: ['facebook', 'twitter', 'link', 'link-block'],
+                blocks: ['facebook', 'twitter', 'google', 'link', 'link-block'],
 
                 prefix: 'social',
 

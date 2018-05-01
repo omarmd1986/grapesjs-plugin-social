@@ -22,14 +22,14 @@ export default (editor, config = {}) => {
 
     isActive('twitter') && bm.add(`${config.prefix}-twitter`, {
         label: `Twitter`,
-        category: config.socialCategory,        
+        category: config.socialCategory,
         content: {
             prefix: config.prefix,
-            
+
             components: `
                 <style>
                 div.${config.prefix}-tlike{
-                    padding: 5px;
+                    margin: 5px;
                     position:relative;
                     display: inline;
                     width: fit-content;
@@ -39,6 +39,31 @@ export default (editor, config = {}) => {
                 <div class="${config.prefix}-tlike"></div>`
         },
         attributes: {class: 'fa fa-twitter'}
+    });
+
+    isActive('google') && bm.add(`${config.prefix}-google`, {
+        label: `Google`,
+        category: config.socialCategory,
+        content: `
+            <style>
+                div.${config.prefix}-tgoogle{
+                    width: max-content;
+                    position: relative;
+                    display: inline-block;
+                    margin: 5px;
+                }
+            </style>
+            <div class="${config.prefix}-tgoogle">
+                <div class="social-share" title="Share">
+                    <div>
+                        <div class="social-share-icon">
+                            <i class="fa fa-google-plus"></i>
+                        </div>
+                        <span class="social-share-text">Share</span>
+                    </div>
+                </div>
+            </div>`,
+        attributes: {class: 'fa fa-google-plus'}
     });
     /*
      * 

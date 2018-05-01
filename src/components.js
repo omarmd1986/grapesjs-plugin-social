@@ -2,6 +2,7 @@ import socialLink from './components/socialLink';
 import socialLinkBlock from './components/socialLinkBlock';
 import fLike from './components/fLike';
 import tLike from './components/tLike';
+import gLike from './components/gLike';
 
 export default (editor, config = {}) => {
 
@@ -12,4 +13,6 @@ export default (editor, config = {}) => {
     fLike(editor, config);
     
     tLike(editor, config);
+    
+    gLike(editor, config);
 }

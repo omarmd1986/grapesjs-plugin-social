@@ -68,7 +68,7 @@ export default (editor, config = {}) => {
             urlLike: window.location.href,
             layout: 'button_count',
             action: 'like',
-            btnSize: 'large',
+            btnSize: 'small',
             includeShareBtn: true,
             showFriendFaces: true,
 

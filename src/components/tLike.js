@@ -60,7 +60,7 @@ export default (editor, config = {}) => {
                 cover.setAttribute('style', 'position: absolute; z-index: -1; width: 100%; height:100%; top: 0; left: 0;');
                 cover.setAttribute('class', 'cover');
 
-                this.parentNode.setAttribute('style', 'display: inline-block;')
+                this.parentNode.setAttribute('style', 'display: inline-block; vertical-align:top;')
 
                 this.appendChild(cover);
 

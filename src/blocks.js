@@ -34,6 +34,7 @@ export default (editor, config = {}) => {
                     display: inline;
                     width: fit-content;
                     height: fit-content;
+                    vertical-align: top;
                 }
                 </style>
                 <div class="${config.prefix}-tlike"></div>`
@@ -50,7 +51,9 @@ export default (editor, config = {}) => {
                     width: max-content;
                     position: relative;
                     display: inline-block;
-                    margin: 5px;
+                    margin-left: 5px;
+                    margin-right: 5px;
+                    vertical-align:top;
                 }
             </style>
             <div class="${config.prefix}-tgoogle">

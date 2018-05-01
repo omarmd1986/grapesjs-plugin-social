@@ -1,9 +1,11 @@
 import socialLink from './components/socialLink';
 import socialLinkBlock from './components/socialLinkBlock';
-import fLike from './components/fLike';
-import tLike from './components/tLike';
-import gLike from './components/gLike';
-import lLike from './components/lLike';
+
+import Facebook from './components/Facebook';
+import Twitter from './components/Twitter';
+import Google from './components/Google';
+import LinkedIn from './components/LinkedIn';
+import Skype from './components/Skype';
 
 export default (editor, config = {}) => {
 
@@ -11,11 +13,13 @@ export default (editor, config = {}) => {
     
     socialLinkBlock(editor, config);
     
-    fLike(editor, config);
+    Facebook(editor, config);
     
-    tLike(editor, config);
+    Twitter(editor, config);
     
-    gLike(editor, config);
+    Google(editor, config);
     
-    lLike(editor, config);
+    LinkedIn(editor, config);
+    
+    Skype(editor, config);
 }

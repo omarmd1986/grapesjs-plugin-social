@@ -47,7 +47,7 @@ export default (editor, config = {}) => {
         category: config.socialCategory,
         content: `
             <style>
-                div.${config.prefix}-tgoogle{
+                div.${config.prefix}-google{
                     width: max-content;
                     position: relative;
                     display: inline-block;
@@ -56,7 +56,7 @@ export default (editor, config = {}) => {
                     vertical-align:top;
                 }
             </style>
-            <div class="${config.prefix}-tgoogle">
+            <div class="${config.prefix}-google">
                 <div class="social-share" title="Share">
                     <div>
                         <div class="social-share-icon">
@@ -70,7 +70,7 @@ export default (editor, config = {}) => {
     });
     
     isActive('linkedin') && bm.add(`${config.prefix}-linkedin`, {
-        label: `Google`,
+        label: `LinkedIn`,
         category: config.socialCategory,
         content: `
             <style>
@@ -94,6 +94,33 @@ export default (editor, config = {}) => {
                 </div>
             </div>`,
         attributes: {class: 'fa fa-linkedin'}
+    });
+    
+    isActive('skype') && bm.add(`${config.prefix}-skype`, {
+        label: `Skype`,
+        category: config.socialCategory,
+        content: `
+            <style>
+                div.${config.prefix}-skype{
+                    width: max-content;
+                    position: relative;
+                    display: inline-block;
+                    margin-left: 5px;
+                    margin-right: 5px;
+                    vertical-align:top;
+                }
+            </style>
+            <div class="${config.prefix}-skype">
+                <div class="social-share" title="Share">
+                    <div>
+                        <div class="social-share-icon">
+                            <i class="fa fa-skype"></i>
+                        </div>
+                        <span class="social-share-text">Share</span>
+                    </div>
+                </div>
+            </div>`,
+        attributes: {class: 'fa fa-skype'}
     });
     /*
      * 

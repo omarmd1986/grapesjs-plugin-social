@@ -14,6 +14,7 @@ export default (editor, config = {}) => {
 
     let model = getModel(editor, {
         type: `${config.prefix}-google`,
+        prefix: config.prefix,
         eventName: eventName,
         baseUrl: `https://plus.google.com/share?app=110`,
         windowTitle: 'Share on Google'

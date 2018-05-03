@@ -64,6 +64,7 @@ export default (editor, config = {}) => {
         // Extend default properties
         defaults: Object.assign({}, defaultModel.prototype.defaults, {
             type: 'flike',
+            category: `${config.prefix}-component-category`,
 
             urlLike: window.location.href,
             layout: 'button_count',
@@ -162,11 +163,11 @@ export default (editor, config = {}) => {
             iframe.setAttribute('height', height);
 
             model.components(Util.toString(iframe));
-            
+
             var self = this;
-            setTimeout(function(){
+            setTimeout(function () {
                 self.el.firstChild.className = self.ppfx + 'no-pointer';
-            },10);
+            }, 10);
         }
     });
 

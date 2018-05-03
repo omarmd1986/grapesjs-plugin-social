@@ -39,6 +39,9 @@ export default (editor, config = {}) => {
             droppable: false,
 
             type: 'social-link',
+
+            category: `${config.prefix}-component-category`,
+            
             tagName: 'a',
 
             network: null,

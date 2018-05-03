@@ -6,11 +6,12 @@ export default (editor, config = {}) => {
 
     const defaultType = domc.getType('default');
     const defaultModel = defaultType.model;
-    
+
     return defaultModel.extend({
         // Extend default properties
         defaults: Object.assign({}, defaultModel.prototype.defaults, {
             type: config.type,
+            category: `${config.prefix}-component-category`,
 
             traits: [
                 {
@@ -28,7 +29,7 @@ export default (editor, config = {}) => {
                     placeholder: 'Text to share'
                 }
             ],
-            
+
             eventName: config.eventName,
             baseUrl: config.baseUrl,
             windowSize: (config.windowSize || `left=0,top=0,width=420,height=620,personalbar=0,toolbar=0,scrollbars=0,resizable=0`),
@@ -47,7 +48,7 @@ export default (editor, config = {}) => {
                         , text = this.getAttribute('data-text') || '';
                 var child = this.querySelectorAll('div')[0] || null;
 
-                const windowSize = '{[ windowSize ]}' ,
+                const windowSize = '{[ windowSize ]}',
                         windowTitle = `{[ windowTitle ]}`;
 
                 child && child.addEventListener('click', function () {

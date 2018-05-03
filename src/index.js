@@ -10,25 +10,36 @@ export default grapesjs.plugins.add('gjs-social', (editor, opts = {}) => {
                 prefix: 'social',
 
                 style: style,
-                
+
                 socialCategory: 'Social'
         }, ...opts};
-    
+
     // Add components
     loadComponents(editor, options);
 
     // Add blocks
     loadBlocks(editor, options);
 
-    // Adding the font awesom
-    editor.on('load', () => {
+    var includeCss = function () {
         const components = editor.getComponents();
-        const link = components.find(m => (m.get('attributes').rel === 'stylesheet' &&  m.get('attributes').href === faUrl));
-        
+        const link = components.find(m => (m.get('attributes').rel === 'stylesheet' && m.get('attributes').href === faUrl));
+        const _style = components.find(m => (m.get('attributes')['data-plugincss'] === 'grapesjs-plugin-social'));
+
         // Avoid duplicated the FA css.
-        if(!link){
+        if (!link) {
             editor.addComponents(`<link rel="stylesheet" href="${faUrl}">`);
         }
-        editor.addComponents(options.style);
+
+        if (!_style) {
+            editor.addComponents(options.style);
+        }
+    };
+
+    // Adding the font awesom
+    editor.on('canvas:drop', function(d, m){
+        const cat = m.get('category');
+        if(cat === `${options.prefix}-component-category`){
+            includeCss();
+        }
     });
 });

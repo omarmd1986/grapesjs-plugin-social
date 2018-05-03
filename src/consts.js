@@ -26,7 +26,7 @@ export const
             'fa-rss'
         ],
         style = `
-            <style>
+            <style data-plugincss="grapesjs-plugin-social">
             div.social-link-block{
                 text-align:center;
             }

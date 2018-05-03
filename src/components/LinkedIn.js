@@ -14,6 +14,7 @@ export default (editor, config = {}) => {
 
     let model = getModel(editor, {
         type: `${config.prefix}-linkedin`,
+        prefix: config.prefix,
         eventName: eventName,
         baseUrl: `http://www.linkedin.com/shareArticle?mini=true`,
         windowTitle: 'Share on LinkedIn'

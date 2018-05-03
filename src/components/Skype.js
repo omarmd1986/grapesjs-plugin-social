@@ -14,6 +14,7 @@ export default (editor, config = {}) => {
 
     let model = getModel(editor, {
         type: `${config.prefix}-skype`,
+        prefix: config.prefix,
         eventName: eventName,
         baseUrl: `https://web.skype.com/share?source=button`,
         windowTitle: 'Share on Skype'

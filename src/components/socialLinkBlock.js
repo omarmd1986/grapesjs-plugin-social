@@ -24,6 +24,8 @@ export default (editor, config = {}) => {
         // Extend default properties
         defaults: Object.assign({}, defaultModel.prototype.defaults, {
             type: 'social-link-block',
+            
+            category: `${config.prefix}-component-category`,
 
             position: null,
 

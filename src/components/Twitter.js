@@ -30,6 +30,8 @@ export default (editor, config = {}) => {
         defaults: Object.assign({}, defaultModel.prototype.defaults, {
             type: 'tlike',
 
+            category: `${config.prefix}-component-category`,
+
             // Traits (Settings)
             traits: traits,
 

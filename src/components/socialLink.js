@@ -52,7 +52,7 @@ export default (editor, config = {}) => {
         })
     }, {
         isComponent: function (el) {
-            var result = {};//linkModel.isComponent(el);
+            var result = '';//linkModel.isComponent(el);
 
 //            if (!result || result === '') {
 //                return result;
@@ -72,7 +72,7 @@ export default (editor, config = {}) => {
                 return false;
             };
 
-            if (el.tagName === 'A' && isSocial) {
+            if (el.tagName === 'A' && isSocial()) {
                 result = {type: 'social-link'};
             }
             return result;

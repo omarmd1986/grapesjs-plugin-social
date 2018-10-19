@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-plugin-social",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "GrapesJS Plugin Social",
   "main": "dist/grapesjs-plugin-social.min.js",
   "scripts": {

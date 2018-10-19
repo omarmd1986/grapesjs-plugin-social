@@ -52,11 +52,11 @@ export default (editor, config = {}) => {
         })
     }, {
         isComponent: function (el) {
-            var result = linkModel.isComponent(el);
+            var result = {};//linkModel.isComponent(el);
 
-            if (!result || result === '') {
-                return result;
-            }
+//            if (!result || result === '') {
+//                return result;
+//            }
             var IsSocialLink = {};
 
             var isSocial = function () {

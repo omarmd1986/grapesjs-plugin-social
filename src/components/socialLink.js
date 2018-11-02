@@ -82,6 +82,7 @@ export default (editor, config = {}) => {
     let view = linkView.extend({
 
         init: function () {
+            linkView.prototype.init();
             let model = this.model;
 
             this.listenTo(model, 'change:network change:color', this.updateButton);
